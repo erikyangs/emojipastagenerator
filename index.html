@@ -49,12 +49,12 @@
 <body style = "font-family: Montserrat; font-weight: 300;margin:0;padding:0;">
 
 	<div style="margin-top:25vh;"></div>
-	<h1 style="text-align: center;">It's like text, but like, text that's vaping while hoverboarding.</h1>
+	<h1 style="text-align: center;">Convert text to emojipasta.</h1>
 
 	<div ng-app="shitpost" ng-cloak>
 	    <div ng-controller="mainController" style="font-size:0">
-	        <textarea ng-model="input" style="font-size:25px;font-family:Montserrat;border:none;vertical-align:top;display:inline-block;padding:0;margin:0;width:30%;height:30vh;background-color:#BBBBBB;resize:none;padding:8px 10px;box-sizing: border-box;margin-left:20%;"></textarea>
-	        <p style="font-size:25px;border:none;vertical-align:top;display:inline-block;padding:0;margin:0;width:30%;height:30vh;background-color:#DDDDDD;padding:8px 10px;box-sizing: border-box;margin-right:20%;">{{convertToShitpost(input)}}</p>
+	        <textarea ng-model="input" data-ng-trim="false" style="font-size:25px;font-family:Montserrat;border:none;vertical-align:top;display:inline-block;padding:0;margin:0;width:50%;height:30vh;background-color:#BBBBBB;resize:none;padding:8px 10px;box-sizing: border-box;"></textarea>
+	        <div style="font-size:25px;border:none;vertical-align:top;display:inline-block;padding:0;margin:0;width:50%;height:30vh;background-color:#DDDDDD;padding:8px 10px;box-sizing: border-box;white-space:pre-wrap">{{convertToShitpost(input)}}</div>
 	    </div>
 	</div>
 </body>
