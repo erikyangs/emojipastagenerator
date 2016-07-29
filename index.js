@@ -45,7 +45,7 @@ function wordArrayToShitpost(wordArray) {
 
         var emoji = emojiMappings[word.toLowerCase()];
         if (emoji) {
-            output += " " + emoji;
+            output += " " + emoji.char;
         }
     }
     return output;
@@ -64,7 +64,7 @@ $(document).ready(function() {
     $.get("https://erikyangs.github.io/shitpostgenerator/emojiMapping.json", function(data, status) {
         parseJSON(data);
         emojisReady = true;
-        modifyEmojiLib(emojiMappings);
+        //modifyEmojiLib(emojiMappings);
     });
 });
 
