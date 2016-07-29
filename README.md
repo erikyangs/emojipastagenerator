@@ -1,2 +1,3 @@
 # shitpostgenerator
-Post text, get shitpost-worthy spam back.
+You: I want my text to look like sewage.
+Me: Say no more fam.
