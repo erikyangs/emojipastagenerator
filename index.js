@@ -38,14 +38,14 @@ function createWordArray(input) {
 }
 
 function wordArrayToShitpost(wordArray) {
-	var output = "";
+    var output = "";
     for (var i = 0; i < wordArray.length; i++) {
-    	word = wordArray[i];
-    	output += word;
+        word = wordArray[i];
+        output += word;
 
-        var emoji = emojiMappings[word.toLowerCase()];        
+        var emoji = emojiMappings[word.toLowerCase()];
         if (emoji) {
-             output += " " + emoji.char;
+            output += " " + emoji;
         }
     }
     return output;
@@ -61,12 +61,38 @@ function getRandomInt(min, max) {
 var emojisReady = false;
 var emojiMappings;
 $(document).ready(function() {
-    $.get("https://raw.githubusercontent.com/muan/emojilib/master/emojis.json", function(data, status) {
+    $.get("https://erikyangs.github.io/shitpostgenerator/emojiMapping.json", function(data, status) {
         parseJSON(data);
         emojisReady = true;
+        modifyEmojiLib(emojiMappings);
     });
 });
 
 function parseJSON(data) {
     emojiMappings = JSON && JSON.parse(data) || $.parseJSON(data);
+}
+
+//creates a map from words&keywords to emojis from emojis.json
+function modifyEmojiLib(x) {
+    var output = {};
+
+    for (var key in x) {
+    	var char = x[key].char;
+
+        //add the key
+        if (!(key in output)) {
+            output[key] = char;
+        }
+
+        var keywords = x[key].keywords;
+        for (var i = 0; i < keywords.length; i++) {
+            keyword = keywords[i];
+            //pairs emoji with first keyword occurrence (for the time being)
+            if (!(keyword in output)) {
+                output[keyword] = char;
+            }
+        }
+    }
+    var str = JSON.stringify(output, null, 4); 
+    $("#json").text(str);
 }
