@@ -40,10 +40,10 @@ function createWordArray(input) {
 function wordArrayToShitpost(wordArray) {
 	var output = "";
     for (var i = 0; i < wordArray.length; i++) {
-    	word = wordArray[i].toLowerCase();
+    	word = wordArray[i];
     	output += word;
 
-        var emoji = emojiMappings[word];        
+        var emoji = emojiMappings[word.toLowerCase()];        
         if (emoji) {
              output += " " + emoji.char;
         }
