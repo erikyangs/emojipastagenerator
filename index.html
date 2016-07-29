@@ -36,28 +36,26 @@
 	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 	<link href="https://fonts.googleapis.com/css?family=Droid+Serif" rel="stylesheet">
 
-	<!--Stylesheets-->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<link rel="stylesheet" href="index.css">
-
-	<title>
-		Erik's Bootstrap Template
-	</title>
-</head>
-
-<body style = "font-family: Montserrat;">
-
-	<div ng-app="shitpost">
-	    <div ng-controller="mainController" style="font-size:0">
-	        <textarea ng-model="test" style="font-size:30px;border:none;vertical-align:top;display:inline-block;padding:0;margin:0;width:50%;height:300px;background-color:#BBBBBB;"></textarea>
-	        <p style="font-size:30px;border:none;vertical-align:top;display:inline-block;padding:0;margin:0;width:49.5%;height:300px;background-color:#DDDDDD;">{{test}}</p>
-	    </div>
-	</div>
-
 	<!--Javascript-->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script src="index.js"></script>
+
+	<title>
+		S H I T P O S T - A E S T H E T I C
+	</title>
+</head>
+
+<body style = "font-family: Montserrat; font-weight: 300;margin:0;padding:0;">
+
+	<div style="margin-top:25vh;"></div>
+	<h1 style="text-align: center;">It's like text, but like, text that's vaping while hoverboarding.</h1>
+
+	<div ng-app="shitpost" ng-cloak>
+	    <div ng-controller="mainController" style="font-size:0">
+	        <textarea ng-model="input" style="font-size:25px;font-family:Montserrat;border:none;vertical-align:top;display:inline-block;padding:0;margin:0;width:30%;height:30vh;background-color:#BBBBBB;resize:none;padding:8px 10px;box-sizing: border-box;margin-left:20%;"></textarea>
+	        <p style="font-size:25px;border:none;vertical-align:top;display:inline-block;padding:0;margin:0;width:30%;height:30vh;background-color:#DDDDDD;padding:8px 10px;box-sizing: border-box;margin-right:20%;">{{convertToShitpost(input)}}</p>
+	    </div>
+	</div>
 </body>
 </html>
