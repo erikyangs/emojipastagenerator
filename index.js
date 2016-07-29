@@ -45,7 +45,7 @@ function wordArrayToShitpost(wordArray) {
 
         var emoji = emojiMappings[word.toLowerCase()];
         if (emoji) {
-            output += " " + emoji.char;
+            output += " " + emoji;
         }
     }
     return output;
@@ -62,7 +62,9 @@ var emojisReady = false;
 var emojiMappings;
 $(document).ready(function() {
     $.get("https://erikyangs.github.io/shitpostgenerator/emojiMapping.json", function(data, status) {
-        parseJSON(data);
+        //for some reason this json data is valid, and emojilib isn't.
+        emojiMappings = data;
+        //parseJSON(data);
         emojisReady = true;
         //modifyEmojiLib(emojiMappings);
     });
