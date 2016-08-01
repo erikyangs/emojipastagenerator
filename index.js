@@ -94,7 +94,8 @@ $(document).ready(function() {
 
     $.get("https://erikyangs.github.io/emojipastagenerator/personalEmojiMapping.json", function(data, status) {
         personalEmojiMappings = data;
-        console.log(personalEmojiMappings);
+        console.log(data);
+        console.log(status);
     });
 
     //textarea resizing with content
