@@ -1,3 +1,5 @@
+/*======================================================================*/
+/*AngularJS*/
 var SYMBOLS = '!"#$%&\'()*+,-./:;<=>?@[]^_`{|}~ \n\\';
 
 // Define the shitpost module
@@ -15,6 +17,8 @@ shitpost.controller('mainController', function mainController($scope) {
     }
 });
 
+/*======================================================================*/
+/*Emojipasta helper methods*/
 function createWordArray(input) {
     var output = [];
     var currentWord = "";
@@ -45,30 +49,49 @@ function wordArrayToShitpost(wordArray) {
 
         var emoji = emojiMappings[word.toLowerCase()];
         if (emoji) {
-            output += " " + emoji;
+            var repeat = emojiRepeatArray[i % emojiRepeatArray.length];
+            var totalEmoji = "";
+            for (var j = 0; j < repeat; j++) {
+                totalEmoji += emoji;
+            }
+            output += " " + totalEmoji;
         }
     }
     return output;
 }
 
+/*======================================================================*/
+/*General Helper Methods*/
 //inclusive min, exclusive max
 function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    return Math.floor(Math.random() * (max - min)) + min;
 }
 
-//emoji translation
+//random int array of x integers
+function getRandomIntArray(x) {
+    var result = [];
+    for (var i = 0; i < x; i++) {
+        result.push(getRandomInt(1, 4));
+    }
+    return result;
+}
+
+/*======================================================================*/
+/*JQuery*/
 //emojilib: https://raw.githubusercontent.com/muan/emojilib/master/emojis.json
 var emojisReady = false;
 var emojiMappings;
+var emojiRepeatArray;
 $(document).ready(function() {
     $.get("https://erikyangs.github.io/emojipastagenerator/emojiMapping.json", function(data, status) {
-        //for some reason this json data is valid, and emojilib isn't.
+        //my json doesn't need parsing, emojilib needs parsing.
         emojiMappings = data;
         //parseJSON(data);
         emojisReady = true;
         //modifyEmojiLib(emojiMappings);
     });
 
+    //textarea resizing with content
     $("#textinput").on('input', function(event) {
         $("#textinput").css("height", "1px");
         var scrollHeight = $("#textinput").prop("scrollHeight");
@@ -83,9 +106,12 @@ $(document).ready(function() {
             $("#textinput").css("height", minHeight);
         }
     });
+
+    emojiRepeatArray = getRandomIntArray(50);
 });
 
-
+/*======================================================================*/
+/*Made for updating emojis and testing purposes*/
 function parseJSON(data) {
     emojiMappings = JSON && JSON.parse(data) || $.parseJSON(data);
 }
