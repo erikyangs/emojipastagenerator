@@ -61,7 +61,7 @@ function getRandomInt(min, max) {
 var emojisReady = false;
 var emojiMappings;
 $(document).ready(function() {
-    $.get("https://erikyangs.github.io/shitpostgenerator/emojiMapping.json", function(data, status) {
+    $.get("https://erikyangs.github.io/emojipastagenerator/emojiMapping.json", function(data, status) {
         //for some reason this json data is valid, and emojilib isn't.
         emojiMappings = data;
         //parseJSON(data);
