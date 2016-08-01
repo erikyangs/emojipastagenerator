@@ -81,6 +81,7 @@ function getRandomIntArray(x) {
 //emojilib: https://raw.githubusercontent.com/muan/emojilib/master/emojis.json
 var emojisReady = false;
 var emojiMappings;
+var personalEmojiMappings;
 var emojiRepeatArray;
 $(document).ready(function() {
     $.get("https://erikyangs.github.io/emojipastagenerator/emojiMapping.json", function(data, status) {
@@ -89,6 +90,11 @@ $(document).ready(function() {
         //parseJSON(data);
         emojisReady = true;
         //modifyEmojiLib(emojiMappings);
+    });
+
+    $.get("https://erikyangs.github.io/emojipastagenerator/personalEmojiMapping.json", function(data, status) {
+        personalEmojiMappings = data;
+        console.log(personalEmojiMappings);
     });
 
     //textarea resizing with content
