@@ -9,12 +9,59 @@ shitpost.controller('mainController', function mainController($scope) {
     //stores data from textarea from ng-model
     $scope.input = "";
 
-    $scope.convertToShitpost = function(input) {
-        if (emojisReady) {
-            var wordArray = createWordArray(input);
-            return wordArrayToShitpost(wordArray);
+    $scope.convertToEmojipasta = function(input) {
+        if (emojisReady && personalEmojisReady) {
+            var wordArray = createWordArray(addPersonalEmojis(input));
+            return wordArrayToEmojipasta(wordArray);
+        } else if (pageReady) {
+            alert("Emojis may not be loading. Sorry about that. Contact me for fixes.");
         }
     }
+});
+
+/*======================================================================*/
+/*JQuery*/
+//emojilib: https://raw.githubusercontent.com/muan/emojilib/master/emojis.json
+//since two files, when it's one it will be true.
+var pageReady = false;
+var emojisReady = false;
+var personalEmojisReady = false;
+var emojiMappings;
+var personalEmojiMappings;
+var emojiRepeatArray;
+$(document).ready(function() {
+    pageReady = true;
+
+    $.get("https://erikyangs.github.io/emojipastagenerator/emojiMapping.json", function(data, status) {
+        //my json doesn't need parsing, emojilib needs parsing.
+        emojiMappings = data;
+        //parseJSON(data);
+        emojisReady = true;
+        //modifyEmojiLib(emojiMappings);
+    });
+
+    $.get("https://erikyangs.github.io/emojipastagenerator/personalEmojiMapping.json", function(data, status) {
+        personalEmojiMappings = data;
+        personalEmojisReady = true;
+    });
+
+    //textarea resizing with content
+    $("#textinput").on('input', function(event) {
+        $("#textinput").css("height", "1px");
+        var scrollHeight = $("#textinput").prop("scrollHeight");
+        var minHeight = $(window).height() * 0.30;
+        //if new line
+        if (event.keyCode == 13) {
+            scrollHeight += 30;
+        }
+        if (scrollHeight > minHeight) {
+            $("#textinput").css("height", scrollHeight);
+        } else {
+            $("#textinput").css("height", minHeight);
+        }
+    });
+
+    emojiRepeatArray = getRandomIntArray(50);
 });
 
 /*======================================================================*/
@@ -41,7 +88,7 @@ function createWordArray(input) {
     return output;
 }
 
-function wordArrayToShitpost(wordArray) {
+function wordArrayToEmojipasta(wordArray) {
     var output = "";
     for (var i = 0; i < wordArray.length; i++) {
         word = wordArray[i];
@@ -60,6 +107,20 @@ function wordArrayToShitpost(wordArray) {
     return output;
 }
 
+function addPersonalEmojis(input) {
+    var result = input;
+    var lowercaseInput = input.toLowerCase();
+    for (var key in personalEmojiMappings) {
+        if (lowercaseInput.includes(key.toLowerCase())) {
+            var emoji = personalEmojiMappings[key];
+            result = input.replace(new RegExp(key, 'ig'), function(match) {
+                return emoji + " " + match + " " + emoji;
+            });
+        }
+    }
+    return result;
+}
+
 /*======================================================================*/
 /*General Helper Methods*/
 //inclusive min, exclusive max
@@ -75,47 +136,6 @@ function getRandomIntArray(x) {
     }
     return result;
 }
-
-/*======================================================================*/
-/*JQuery*/
-//emojilib: https://raw.githubusercontent.com/muan/emojilib/master/emojis.json
-var emojisReady = false;
-var emojiMappings;
-var personalEmojiMappings;
-var emojiRepeatArray;
-$(document).ready(function() {
-    $.get("https://erikyangs.github.io/emojipastagenerator/emojiMapping.json", function(data, status) {
-        //my json doesn't need parsing, emojilib needs parsing.
-        emojiMappings = data;
-        //parseJSON(data);
-        emojisReady = true;
-        //modifyEmojiLib(emojiMappings);
-    });
-
-    $.get("https://erikyangs.github.io/emojipastagenerator/personalEmojiMapping.json", function(data, status) {
-        personalEmojiMappings = data;
-        console.log(data);
-        console.log(status);
-    });
-
-    //textarea resizing with content
-    $("#textinput").on('input', function(event) {
-        $("#textinput").css("height", "1px");
-        var scrollHeight = $("#textinput").prop("scrollHeight");
-        var minHeight = $(window).height() * 0.30;
-        //if new line
-        if (event.keyCode == 13) {
-            scrollHeight += 30;
-        }
-        if (scrollHeight > minHeight) {
-            $("#textinput").css("height", scrollHeight);
-        } else {
-            $("#textinput").css("height", minHeight);
-        }
-    });
-
-    emojiRepeatArray = getRandomIntArray(50);
-});
 
 /*======================================================================*/
 /*Made for updating emojis and testing purposes*/
