@@ -108,12 +108,12 @@ function wordArrayToEmojipasta(wordArray) {
 }
 
 function addPersonalEmojis(input) {
-    var result = input;
+    var result = new String(input);
     var lowercaseInput = input.toLowerCase();
     for (var key in personalEmojiMappings) {
         if (lowercaseInput.includes(key.toLowerCase())) {
             var emoji = personalEmojiMappings[key];
-            result = input.replace(new RegExp(key, 'ig'), function(match) {
+            result = result.replace(new RegExp(key, 'ig'), function(match) {
                 return emoji + " " + match + " " + emoji;
             });
         }
