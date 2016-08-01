@@ -68,7 +68,23 @@ $(document).ready(function() {
         emojisReady = true;
         //modifyEmojiLib(emojiMappings);
     });
+
+    $("#textinput").on('input', function(event) {
+        $("#textinput").css("height", "1px");
+        var scrollHeight = $("#textinput").prop("scrollHeight");
+        var minHeight = $(window).height() * 0.30;
+        //if new line
+        if (event.keyCode == 13) {
+            scrollHeight += 30;
+        }
+        if (scrollHeight > minHeight) {
+            $("#textinput").css("height", scrollHeight);
+        } else {
+            $("#textinput").css("height", minHeight);
+        }
+    });
 });
+
 
 function parseJSON(data) {
     emojiMappings = JSON && JSON.parse(data) || $.parseJSON(data);
@@ -79,7 +95,7 @@ function modifyEmojiLib(x) {
     var output = {};
 
     for (var key in x) {
-    	var char = x[key].char;
+        var char = x[key].char;
 
         //add the key
         if (!(key in output)) {
@@ -95,6 +111,6 @@ function modifyEmojiLib(x) {
             }
         }
     }
-    var str = JSON.stringify(output, null, 4); 
+    var str = JSON.stringify(output, null, 4);
     $("#json").text(str);
 }
