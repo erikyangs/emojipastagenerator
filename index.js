@@ -117,6 +117,7 @@ function wordArrayToEmojipasta(wordArray) {
     return output;
 }
 
+/* Deprecated. Replaces every occurence of the word, even within words (e.g. w🍑ass🍑up)
 function addPersonalEmojis(input) {
     var result = new String(input);
     var lowercaseInput = input.toLowerCase();
@@ -129,7 +130,7 @@ function addPersonalEmojis(input) {
         }
     }
     return result;
-}
+}*/
 
 /*======================================================================*/
 /*General Helper Methods*/
