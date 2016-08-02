@@ -1,50 +1,69 @@
 {
-	"_comment": "Please put keys in alphabetical order using alphabetizeJSON(input)",
-    "420": "🌿🍁",
-    "#dicksoutforharambe": "🐒🍆🙏",
-    "9/11": "💥🏢🏢✈🔥🔥🔥",
-    "AFX": "💃💃💃",
-    "Berkeley": "🌿",
-    "Cal": "😍👌👀",
-    "Erik": "💕💕💕",
-    "Harambe": "🙏🐒🙏",
-    "IDX": "💃💃💃",
-    "Innovative Design": "👌💯👌",
-    "Kevin": "💪",
-    "Lawrence": "🔥👌💯",
-    "Main Stacks": "📖",
-    "Soda Hall": "🙏",
-    "Stanford": "😈",
-    "Stanfurd": "😈",
-    "Taylor Swift": "🐍",
-    "UC Berkeley": "😍💯👌👀",
-    "always": "🕔",
-    "ass": "🍑",
-    "ay lmao": "👽👽👽",
-    "bitches": "🍑🍑🍑",
-    "bless": "🙏🙏",
-    "bush": "🌳",
-    "cummies": "💦",
-    "daddy": "😜💖💦",
-    "dat boi": "🐸",
-    "dick": "🍆",
-    "dicks": "🍆",
-    "down": "⬇⬇",
-    "emojilib": "👌🙏📖",
-    "flex": "💪",
-    "fuck": "🖕🍆🍑",
-    "gains": "💪🏻",
-    "hoes": "🍑🐶🍑",
-    "loud": "🗣🗣🗣",
-    "pc police": "😠🖕💩",
-    "shave": "🔪🍑",
-    "shit": "💩",
-    "skeltal": "💀",
-    "spongegar": "🙎",
-    "thirst": "👅💦",
-    "touchy": "💕🖐",
-    "uncle": "👴",
-    "weed": "🌿🍁",
-    "wet": "💦",
-    "yeah": "🙌"
+	"_usage-comment": "Please alphabetize. If you need help use alphabetizeJSON() in index.js.",
+
+	"Erik": "💕💕💕",
+	"Lawrence": "🔥👌💯",
+	"Kevin": "💪",
+	
+	"AFX": "💃💃💃",
+	"always": "🕔",
+	"ass": "🍑",
+	"ay lmao": "👽👽👽",
+	
+	"Berkeley": "🌿",
+	"bitches": "🍑🍑🍑",
+	"bless": "🙏🙏",
+	"bush": "🌳",
+	
+	"Cal": "😍👌👀",
+	"cummies": "💦",
+	
+	"daddy": "😜💖💦",
+	"dat boi": "🐸",
+	"dick": "🍆",
+	"dicks": "🍆",
+	"#dicksoutforharambe": "🐒🍆🙏",
+	"down": "⬇⬇",
+	
+	"emojilib": "👌🙏📖",
+	
+	"flex": "💪",
+	"fuck": "🖕🍆🍑",
+	
+	"gains": "💪🏻",
+	
+	"Harambe": "🙏🐒🙏",
+	"hoes": "🍑🐶🍑",
+	
+	"IDX": "💃💃💃",
+	"Innovative Design": "👌💯👌",
+	
+	"loud": "🗣🗣🗣",
+	
+	"Main Stacks": "📖",
+
+	"pc police": "😠🖕💩",
+	
+	"shave": "🔪🍑",
+	"shit": "💩",
+	"skeltal": "💀",
+	"Soda Hall": "🙏",
+	"spongegar": "🙎",
+	"Stanford": "😈",
+	"Stanfurd": "😈",
+	
+	"Taylor Swift": "🐍",
+	"thirst": "👅💦",
+	"touchy": "💕🖐",
+	
+	"UC Berkeley": "😍💯👌👀",
+	"uncle": "👴",
+	
+	"weed": "🌿🍁",
+	"wet": "💦",
+	
+	"yeah": "🙌",
+	
+	"420": "🌿🍁",
+	"9/11": "💥🏢🏢✈🔥🔥🔥"	
 }
