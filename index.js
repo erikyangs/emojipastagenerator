@@ -98,7 +98,8 @@ function wordArrayToEmojipasta(wordArray) {
         //personalEmojiMappings.json
         var personalEmoji = personalEmojiMappings[word.toLowerCase()];
         if (personalEmoji) {
-            output += " "
+            output += word;
+            output += " " + personalEmoji;
         } //emojiMappings.json
         else {
             output += word;
