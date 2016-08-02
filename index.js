@@ -42,7 +42,8 @@ $(document).ready(function() {
     });
 
     $.get("https://erikyangs.github.io/emojipastagenerator/personalEmojiMapping.json", function(data, status) {
-        personalEmojiMappings = data;
+        personalEmojiMappings = lowercaseJSON(data);
+        console.log(personalEmojiMappings);
         personalEmojisReady = true;
         //alphabetizeJSON(personalEmojiMappings);
     });
@@ -180,14 +181,14 @@ function modifyEmojiLib(x) {
     return output;
 }
 
-//alphabetize the json file o
+//alphabetize the object o
 function alphabetizeJSON(o) {
     var sorted = {},
-    key, a = [];
+        key, a = [];
 
     for (key in o) {
         if (o.hasOwnProperty(key)) {
-                a.push(key);
+            a.push(key);
         }
     }
 
@@ -201,4 +202,16 @@ function alphabetizeJSON(o) {
     console.log(str)
     $("#json").text(str);
     return sorted;
+}
+
+//makes all keys in object lowercase
+function lowercaseJSON(obj) {
+    var key, keys = Object.keys(obj);
+    var n = keys.length;
+    var newobj = {}
+    while (n--) {
+        key = keys[n];
+        newobj[key.toLowerCase()] = obj[key];
+    }
+    return newobj;
 }
