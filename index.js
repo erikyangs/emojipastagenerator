@@ -43,7 +43,7 @@ $(document).ready(function() {
     $.get("https://erikyangs.github.io/emojipastagenerator/personalEmojiMapping.json", function(data, status) {
         personalEmojiMappings = data;
         personalEmojisReady = true;
-        alphabetizeJSON(personalEmojiMappings);
+        //alphabetizeJSON(personalEmojiMappings);
     });
 
     //textarea resizing with content
