@@ -105,11 +105,20 @@ function wordArrayToEmojipasta(wordArray) {
 
         //personalEmojiMappings.json multi-word
         if (personalEmoji && typeof(personalEmoji) === "object") {
-            console.log(personalEmoji);
-            output += personalEmoji.words + " " + personalEmoji.emoji;
-            i+=personalEmoji.length-1;
+            var wordArraySliced = wordArray.slice(i, i + personalEmoji.length);
+            var wordArraySlicedLowercase = lowercaseArray(wordArraySliced);
+            if (arraysEqual(personalEmoji.wordArray, wordArraySlicedLowercase)) {
+                var totalWord = "";
+                for(var k = 0; k<wordArraySliced.length; k++){
+                    totalWord += wordArraySliced[k];
+                }
+                output += totalWord + " " + personalEmoji.emoji;
+                i += personalEmoji.length - 1;
+            } else {
+                output += word;
+            }
         } //personalEmojiMappings.json one word
-        else if (personalEmoji) {
+        else if (personalEmoji && typeof(personalEmoji) !== "object") {
             output += word;
             output += " " + personalEmoji;
         } //emojiMappings.json
@@ -228,6 +237,15 @@ function lowercaseJSON(obj) {
     return newobj;
 }
 
+//makes all keys in array lowercase
+function lowercaseArray(array) {
+    var result = [];
+    for (var i = 0; i < array.length; i++) {
+        result.push(array[i].toLowerCase());
+    }
+    return result;
+}
+
 //makes keys with more than one word have object values.
 function wordArrayJSON(obj) {
     var keys = Object.keys(obj);
@@ -240,10 +258,27 @@ function wordArrayJSON(obj) {
         var keyWordArray = createWordArray(key);
         if (keyWordArray.length > 1) {
             //keys will be the first word
-            result[keyWordArray[0]] = { "words": key, "emoji": val, "length": keyWordArray.length };
+            result[keyWordArray[0]] = { "words": key, "wordArray": keyWordArray, "emoji": val, "length": keyWordArray.length };
         } else {
             result[key] = val;
         }
     }
     return result;
+}
+
+//checks if values of array are equal
+function arraysEqual(a, b) {
+    if (a === b) {
+        return true;
+    }
+    if (a == null || b == null) {
+        return false;
+    }
+    if (a.length != b.length) {
+        return false;
+    }
+    for (var i = 0; i < a.length; ++i) {
+        if (a[i] !== b[i]) return false;
+    }
+    return true;
 }
