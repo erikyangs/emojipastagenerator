@@ -11,7 +11,8 @@ shitpost.controller('mainController', function mainController($scope) {
 
     $scope.convertToEmojipasta = function(input) {
         if (emojisReady && personalEmojisReady) {
-            var wordArray = createWordArray(addPersonalEmojis(input));
+            //var wordArray = createWordArray(addPersonalEmojis(input));
+            var wordArray = createWordArray(input);
             return wordArrayToEmojipasta(wordArray);
         } else if (pageReady) {
             alert("Emojis may not be loading. Sorry about that. Contact me for fixes.");
