@@ -1,6 +1,8 @@
 /*======================================================================*/
 /*AngularJS*/
 var SYMBOLS = '!"#$%&\'()*+,-./:;<=>?@[]^_`{|}~ \n\\';
+//regex special meanings: \, ^, $, ., |, ?, *, +, (, ), [, {
+var SYMBOLSARR = [" ", "\n", "\\\.", "!", '\\\?', '\\\(', '\\\)', "\\\,", "\\\|"];
 
 // Define the shitpost module
 var shitpost = angular.module('shitpost', []);
@@ -43,7 +45,6 @@ $(document).ready(function() {
 
     $.get("https://erikyangs.github.io/emojipastagenerator/personalEmojiMapping.json", function(data, status) {
         personalEmojiMappings = wordArrayJSON(lowercaseJSON(data));
-        console.log(personalEmojiMappings);
         personalEmojisReady = true;
         //alphabetizeJSON(personalEmojiMappings);
     });
@@ -95,18 +96,26 @@ function createWordArray(input) {
 function wordArrayToEmojipasta(wordArray) {
     var output = "";
     var i = 0;
-    while(i < wordArray.length) {
+    //console.log(wordArray);
+    while (i < wordArray.length) {
         word = wordArray[i];
 
-        //personalEmojiMappings.json
         var personalEmoji = personalEmojiMappings[word.toLowerCase()];
-        if (personalEmoji) {
+        var emoji = emojiMappings[word.toLowerCase()];
+
+        //personalEmojiMappings.json multi-word
+        if (personalEmoji && typeof(personalEmoji) === "object") {
+            console.log(personalEmoji);
+            output += personalEmoji.words + " " + personalEmoji.emoji;
+            i+=personalEmoji.length-1;
+        } //personalEmojiMappings.json one word
+        else if (personalEmoji) {
             output += word;
             output += " " + personalEmoji;
         } //emojiMappings.json
         else {
             output += word;
-            var emoji = emojiMappings[word.toLowerCase()];
+
             if (emoji) {
                 var repeat = emojiRepeatArray[i % emojiRepeatArray.length];
                 var totalEmoji = "";
@@ -116,7 +125,6 @@ function wordArrayToEmojipasta(wordArray) {
                 output += " " + totalEmoji;
             }
         }
-
         i++;
     }
     return output;
@@ -221,22 +229,21 @@ function lowercaseJSON(obj) {
 }
 
 //makes keys with more than one word have object values.
-function wordArrayJSON(obj){
+function wordArrayJSON(obj) {
     var keys = Object.keys(obj);
     var result = {};
-    for(var i = 0; i<keys.length; i++){
+    for (var i = 0; i < keys.length; i++) {
         var key = keys[i];
         var val = obj[key];
-        
-        var keyWordArray = key.split(" ");
-        if(keyWordArray.length > 1){
+
+        //var keyWordArray = key.split(new RegExp(SYMBOLSARR.join("|"), 'g'));
+        var keyWordArray = createWordArray(key);
+        if (keyWordArray.length > 1) {
             //keys will be the first word
-            result[keyWordArray[0]] = {"words":key,"emoji":val};
-        }
-        else{
+            result[keyWordArray[0]] = { "words": key, "emoji": val, "length": keyWordArray.length };
+        } else {
             result[key] = val;
         }
     }
-    console.log(result);
     return result;
 }
