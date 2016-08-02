@@ -42,7 +42,7 @@ $(document).ready(function() {
     });
 
     $.get("https://erikyangs.github.io/emojipastagenerator/personalEmojiMapping.json", function(data, status) {
-        personalEmojiMappings = lowercaseJSON(data);
+        personalEmojiMappings = wordArrayJSON(lowercaseJSON(data));
         console.log(personalEmojiMappings);
         personalEmojisReady = true;
         //alphabetizeJSON(personalEmojiMappings);
@@ -69,6 +69,7 @@ $(document).ready(function() {
 
 /*======================================================================*/
 /*Emojipasta helper methods*/
+//takes input string and makes each word into string
 function createWordArray(input) {
     var output = [];
     var currentWord = "";
@@ -93,7 +94,8 @@ function createWordArray(input) {
 
 function wordArrayToEmojipasta(wordArray) {
     var output = "";
-    for (var i = 0; i < wordArray.length; i++) {
+    var i = 0;
+    while(i < wordArray.length) {
         word = wordArray[i];
 
         //personalEmojiMappings.json
@@ -114,6 +116,8 @@ function wordArrayToEmojipasta(wordArray) {
                 output += " " + totalEmoji;
             }
         }
+
+        i++;
     }
     return output;
 }
@@ -208,10 +212,31 @@ function alphabetizeJSON(o) {
 function lowercaseJSON(obj) {
     var key, keys = Object.keys(obj);
     var n = keys.length;
-    var newobj = {}
+    var newobj = {};
     while (n--) {
         key = keys[n];
         newobj[key.toLowerCase()] = obj[key];
     }
     return newobj;
+}
+
+//makes keys with more than one word have object values.
+function wordArrayJSON(obj){
+    var keys = Object.keys(obj);
+    var result = {};
+    for(var i = 0; i<keys.length; i++){
+        var key = keys[i];
+        var val = obj[key];
+        
+        var keyWordArray = key.split(" ");
+        if(keyWordArray.length > 1){
+            //keys will be the first word
+            result[keyWordArray[0]] = {"words":key,"emoji":val};
+        }
+        else{
+            result[key] = val;
+        }
+    }
+    console.log(result);
+    return result;
 }
