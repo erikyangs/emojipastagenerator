@@ -43,6 +43,7 @@ $(document).ready(function() {
     $.get("https://erikyangs.github.io/emojipastagenerator/personalEmojiMapping.json", function(data, status) {
         personalEmojiMappings = data;
         personalEmojisReady = true;
+        alphabetizeJSON(personalEmojiMappings);
     });
 
     //textarea resizing with content
@@ -92,16 +93,23 @@ function wordArrayToEmojipasta(wordArray) {
     var output = "";
     for (var i = 0; i < wordArray.length; i++) {
         word = wordArray[i];
-        output += word;
 
-        var emoji = emojiMappings[word.toLowerCase()];
-        if (emoji) {
-            var repeat = emojiRepeatArray[i % emojiRepeatArray.length];
-            var totalEmoji = "";
-            for (var j = 0; j < repeat; j++) {
-                totalEmoji += emoji;
+        //personalEmojiMappings.json
+        var personalEmoji = personalEmojiMappings[word.toLowerCase()];
+        if (personalEmoji) {
+            output += " "
+        } //emojiMappings.json
+        else {
+            output += word;
+            var emoji = emojiMappings[word.toLowerCase()];
+            if (emoji) {
+                var repeat = emojiRepeatArray[i % emojiRepeatArray.length];
+                var totalEmoji = "";
+                for (var j = 0; j < repeat; j++) {
+                    totalEmoji += emoji;
+                }
+                output += " " + totalEmoji;
             }
-            output += " " + totalEmoji;
         }
     }
     return output;
@@ -166,4 +174,28 @@ function modifyEmojiLib(x) {
     }
     var str = JSON.stringify(output, null, 4);
     $("#json").text(str);
+    return output;
+}
+
+//alphabetize the json file o
+function alphabetizeJSON(o) {
+    var sorted = {},
+    key, a = [];
+
+    for (key in o) {
+        if (o.hasOwnProperty(key)) {
+                a.push(key);
+        }
+    }
+
+    a.sort();
+
+    for (key = 0; key < a.length; key++) {
+        sorted[a[key]] = o[a[key]];
+    }
+
+    var str = JSON.stringify(sorted, null, 4);
+    console.log(str)
+    $("#json").text(str);
+    return sorted;
 }
