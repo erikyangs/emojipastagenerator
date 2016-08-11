@@ -10,4 +10,17 @@ Made possible by <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a
 
 Special thanks to Lawrence Hsiung for additional emoji mappings.
 ## Issues
+* Extremely inefficient conversion from JSON of emojis to objects:
+  * regular keys -> lowercase keys
+  * lowercase object -> word array
+* Extremely inefficient conversion from text to emojipasta:
+  * text -> array of words
+  * array of words -> lowercase array of words
+  * lowercase array of words compared with JSON of emojis
+  * Matching emojis added to final output string
 
+## Brainstormed additions
+* More emoji mappings!
+* Copy emojipasta to clipboard button
+
+Always open to suggestions and contributions!
