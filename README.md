@@ -17,7 +17,7 @@ Special thanks to Lawrence Hsiung for additional emoji mappings.
   * text -> array of words
   * array of words -> lowercase array of words
   * lowercase array of words compared with JSON of emojis
-  * Matching emojis added to final output string
+  * matching emojis added to final output string
 
 ## Brainstormed additions
 * More emoji mappings!
