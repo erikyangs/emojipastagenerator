@@ -23,4 +23,5 @@ Special thanks to Lawrence Hsiung for additional emoji mappings.
 * More emoji mappings!
 * Copy emojipasta to clipboard button
 
-Always open to suggestions and contributions!
+## Etc.
+Thanks for checking it out! Always open to suggestions and contributions!
