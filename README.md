@@ -1,4 +1,5 @@
 # emojipastagenerator
+[https://erikyangs.github.io/emojipastagenerator](https://erikyangs.github.io/emojipastagenerator "Taylor Swift is a slippery snake")
 >You: I want my text to look like sewage.
 </br>
 >Me: Say no more fam.
@@ -22,6 +23,7 @@ Special thanks to Lawrence Hsiung for additional emoji mappings.
 ## Brainstormed additions
 * More emoji mappings!
 * Copy emojipasta to clipboard button
+* A simpler URL (but that costs money...)
 
 ## Etc.
 Thanks for checking it out! Always open to suggestions and contributions!
