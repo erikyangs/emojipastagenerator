@@ -11,7 +11,7 @@ Made possible by <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a
 
 Special thanks to Lawrence Hsiung for additional emoji mappings.
 ## Issues
-* Each user converts online json file to something usable
+* Each user converts online json file to something usable upon loading
   * there could just be an already converted json file 
 * Personal emoji mappings with the same first word would conflict
 * User converts entire text box to emoji multiple times for each keyboard input
