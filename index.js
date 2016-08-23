@@ -91,6 +91,9 @@ function selectElementContents(el) {
         textRange.moveToElementText(el);
         textRange.select();
     }
+    else{
+        alert("third");
+    }
 }
 
 function clearSelection() {
