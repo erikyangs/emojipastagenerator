@@ -25,7 +25,6 @@ shitpost.controller('mainController', function mainController($scope) {
 /*======================================================================*/
 /*JQuery*/
 //emojilib: https://raw.githubusercontent.com/muan/emojilib/master/emojis.json
-//since two files, when it's one it will be true.
 var pageReady = false;
 var emojisReady = false;
 var personalEmojisReady = false;
@@ -65,8 +64,42 @@ $(document).ready(function() {
         }
     });
 
+    //copy button
+    $("#copybutton").click(function(event){
+        console.log("a");
+        selectElementContents(document.getElementById("emojipasta"));
+        document.execCommand("copy");
+        clearSelection();
+        $("#copynotification").fadeIn(300, function() { $(this).delay(500).fadeOut(1000); });
+    });
+
+    //seed for which words will have 1,2,3 emojis
     emojiRepeatArray = getRandomIntArray(50);
 });
+
+/*======================================================================*/
+/*Copy text helper methods*/
+function selectElementContents(el) {
+    if (window.getSelection && document.createRange) {
+        var sel = window.getSelection();
+        var range = document.createRange();
+        range.selectNodeContents(el);
+        sel.removeAllRanges();
+        sel.addRange(range);
+    } else if (document.selection && document.body.createTextRange) {
+        var textRange = document.body.createTextRange();
+        textRange.moveToElementText(el);
+        textRange.select();
+    }
+}
+
+function clearSelection() {
+    if (document.selection) {
+        document.selection.empty();
+    } else if (window.getSelection) {
+        window.getSelection().removeAllRanges();
+    }
+}
 
 /*======================================================================*/
 /*Emojipasta helper methods*/
@@ -170,6 +203,23 @@ function getRandomIntArray(x) {
     return result;
 }
 
+//checks if values of array are equal
+function arraysEqual(a, b) {
+    if (a === b) {
+        return true;
+    }
+    if (a == null || b == null) {
+        return false;
+    }
+    if (a.length != b.length) {
+        return false;
+    }
+    for (var i = 0; i < a.length; ++i) {
+        if (a[i] !== b[i]) return false;
+    }
+    return true;
+}
+
 /*======================================================================*/
 /*Made for updating emojis and testing purposes*/
 function parseJSON(data) {
@@ -264,21 +314,4 @@ function wordArrayJSON(obj) {
         }
     }
     return result;
-}
-
-//checks if values of array are equal
-function arraysEqual(a, b) {
-    if (a === b) {
-        return true;
-    }
-    if (a == null || b == null) {
-        return false;
-    }
-    if (a.length != b.length) {
-        return false;
-    }
-    for (var i = 0; i < a.length; ++i) {
-        if (a[i] !== b[i]) return false;
-    }
-    return true;
 }
