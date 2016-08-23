@@ -67,7 +67,7 @@ $(document).ready(function() {
     //copy button
     $("#copybutton").click(function(event){
         console.log("a");
-        //selectElementContents(document.getElementById("emojipasta"));
+        selectElementContents(document.getElementById("emojipasta"));
         document.execCommand("copy");
         //clearSelection();
         $("#copynotification").fadeIn(300, function() { $(this).delay(500).fadeOut(1000); });
