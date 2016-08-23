@@ -27,6 +27,7 @@ Special thanks to Lawrence Hsiung for additional emoji mappings.
 ## Brainstormed additions
 * More emoji mappings!
 * Copy emojipasta to clipboard button
+* Sharing your emojipasta
 * A simpler URL (but that costs money...)
 
 ## Etc.
