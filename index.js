@@ -70,7 +70,7 @@ $(document).ready(function() {
         selectElementContents(document.getElementById("emojipasta"));
         alert(document.execCommand!=null);
         document.execCommand("copy");
-        clearSelection();
+        //clearSelection();
         $("#copynotification").fadeIn(300, function() { $(this).delay(500).fadeOut(1000); });
     });
 
