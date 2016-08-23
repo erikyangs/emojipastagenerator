@@ -66,7 +66,6 @@ $(document).ready(function() {
 
     //copy button
     $("#copybutton").click(function(event){
-        console.log("a");
         selectElementContents(document.getElementById("emojipasta"));
         document.execCommand("copy");
         //clearSelection();
@@ -86,13 +85,13 @@ function selectElementContents(el) {
         range.selectNodeContents(el);
         sel.removeAllRanges();
         sel.addRange(range);
-        alert(1);
+        if(document.setSelectionRange){
+            alert("found setselectionrange");
+        }
     } else if (document.selection && document.body.createTextRange) {
         var textRange = document.body.createTextRange();
         textRange.moveToElementText(el);
-        textRange.select();
-        el.setSelectionRange(0,9999);
-        alert(2);
+        textRange.select();       
     }
 }
 
