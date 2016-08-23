@@ -86,13 +86,13 @@ function selectElementContents(el) {
         range.selectNodeContents(el);
         sel.removeAllRanges();
         sel.addRange(range);
+        alert(1);
     } else if (document.selection && document.body.createTextRange) {
         var textRange = document.body.createTextRange();
         textRange.moveToElementText(el);
         textRange.select();
-    }
-    else{
-        alert("third");
+        el.setSelectionRange(0,9999);
+        alert(2);
     }
 }
 
