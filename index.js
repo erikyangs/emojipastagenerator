@@ -4,10 +4,10 @@ var SYMBOLS = '!"#$%&\'()*+,-./:;<=>?@[]^_`{|}~ \n\\';
 //regex special meanings: \, ^, $, ., |, ?, *, +, (, ), [, {
 var SYMBOLSARR = [" ", "\n", "\\\.", "!", '\\\?', '\\\(', '\\\)', "\\\,", "\\\|"];
 
-// Define the shitpost module
-var shitpost = angular.module('shitpost', []);
+// Define the app
+var app = angular.module('mainApp', []);
 
-shitpost.controller('mainController', function mainController($scope) {
+app.controller('mainController', function mainController($scope) {
     //stores data from textarea from ng-model
     $scope.input = "";
 
