@@ -36,23 +36,9 @@
 
 	<!--Style-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="main.css">
 	<style>
-		textarea:focus, input:focus { 
-		    outline: 2px solid #999999 !important;
-		    box-shadow: 0 0 10px #BBBBBB;
-		}
-		#copybutton{
-			opacity:0.4;
-		}
-		#copybutton:hover{
-			opacity:0.7;
-		}
-		#copybutton:active{
-			opacity:1;
-		}
-		#copynotification{
-			display:none;
-		}
+		
 	</style>
 
 	<!--Javascript-->
@@ -65,23 +51,26 @@
 	</title>
 </head>
 
-<body style="font-family: Montserrat; font-weight: 400; margin-bottom:230px;">
+<body>
 	<div style="margin-top:20vh;"></div>
-	<h1 style="text-align: center; font-weight:700">Convert text to emojipasta.</h1>
+	<h1 id="intro-text">Convert text to emojipasta.</h1>
 
 	<div ng-app="shitpost" ng-cloak>
 	    <div class="container" ng-controller="mainController">
 	        <div class="row">
-	            <textarea class="col-md-6 col-sm-12 col-xs-12" id="textinput" placeholder="Enter Text" ng-model="input" data-ng-trim="false" style="font-size:25px;font-family:Montserrat;vertical-align:top;padding:0;margin:0;height:30vh;overflow:hidden;background-color:#EEEEEE;border:3px solid #CCCCCC;resize:none;padding:8px 10px;box-sizing: border-box;"></textarea>
-	            <div class="col-md-6 col-sm-12 col-xs-12" style="font-size:25px;border:none;vertical-align:top;min-height:30vh;background-color:#DDDDDD;padding:8px 10px;box-sizing: border-box;white-space:pre-wrap;word-wrap:break-word;"><span ng-if="!input" style="color:#999999">Converted Emojipasta</span><img src="copyicon.png" id="copybutton" title="copy emojipasta" style="width:25px;height:25px;top:3px;right:3px;position:absolute;"></img><span id="emojipasta">{{convertToEmojipasta(input)}}</span></div>
+	            <textarea class="col-md-6 col-sm-12" id="textinput" placeholder="Enter Text" ng-model="input" data-ng-trim="false"></textarea>
+	            <div class="col-md-6 col-sm-12" id="output"><span ng-if="!input" id="output-placeholder">Converted Emojipasta</span><img src="copyicon.png" id="copybutton" title="copy emojipasta"></img><span id="emojipasta">{{convertToEmojipasta(input)}}</span></div>
 	        </div>
 	    </div>
 	</div>
 
-	<div id="copynotification" style="font-size:30px;background-color:white;border:2px solid crimson;opacity:0.8;padding:15px;position:absolute;top:40%;left:50%;transform:translate(-50%,-50%);"><span>Emojipasta copied to clipboard!</span><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand#Browser_compatibility" target="_blank" style="display:block;font-size:14px;color:crimson;text-align:center;">didn't work? compatibility issue.</a></div>
+	<div id="copynotification">
+        <span>Emojipasta copied to clipboard!</span>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand#Browser_compatibility" target="_blank" style="display:block;font-size:14px;color:crimson;text-align:center;">didn't work? compatibility issue.</a>
+    </div>
 
-	<footer class="footer" style="position:absolute; bottom:0; width:100%; padding:20px 0px 10px 0px; background-color: #DDDDDD; border-top:2px solid crimson;">
-		<div class="container" style="font-size:16px;">
+	<footer class="footer">
+		<div class="container">
 			<p>Created by <a href="http://erikyangs.github.io/" target="_blank">Erik Yang.</a> Special thanks to <a href="https://www.linkedin.com/in/lhsiung" target="_blank">Lawrence Hsiung</a> for additional emoji mappings.</p>
 			<p>Made possible by <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>, <a href="https://jquery.com/" target="_blank">JQuery</a>, <a href="https://angularjs.org/" target="_blank">AngularJS</a>, and <a href="https://github.com/muan/emojilib" target="_blank">emojilib.</a></p>
 			<p><a href="https://github.com/erikyangs/emojipastagenerator" target="_blank">Github Repo</a></p>

@@ -1,0 +1,89 @@
+body{
+    font-family: Montserrat;
+    font-weight: 400;
+    margin-bottom:230px;
+}
+
+h1{
+    font-weight: 700;
+}
+
+#intro-text{
+    text-align: center;
+}
+
+#textinput{
+    font-size:25px;
+    vertical-align:top;
+    padding:0;
+    margin:0;
+    height:30vh;
+    overflow:hidden;
+    background-color:#EEEEEE;
+    border:3px solid #CCCCCC;
+    resize:none;
+    padding:8px 10px;
+    box-sizing: border-box;
+}
+
+textarea:focus, input:focus { 
+    outline: 2px solid #999999 !important;
+    box-shadow: 0 0 10px #BBBBBB;
+}
+
+#output{
+    font-size:25px;
+    border:none;
+    vertical-align:top;
+    min-height:30vh;
+    background-color:#DDDDDD;
+    padding:8px 10px;
+    box-sizing: border-box;
+    white-space: pre-wrap;
+    word-wrap:break-word;
+}
+
+#output-placeholder{
+    color:#999999;
+}
+
+#copybutton{
+    opacity:0.4;
+    width:25px;
+    height:25px;
+    top:3px;
+    right:3px;
+    position:absolute;
+}
+#copybutton:hover{
+    opacity:0.7;
+}
+#copybutton:active{
+    opacity:1;
+}
+
+#copynotification{
+    display:none;
+    font-size:30px;
+    background-color:white;
+    border:2px solid crimson;
+    opacity:0.8;
+    padding:15px;
+    position:absolute;
+    top:40%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+
+.footer{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    padding:20px 0px 10px 0px;
+    background-color: #DDDDDD;
+    border-top:2px solid crimson;
+}
+
+.footer .container{
+    font-size:16px;
+}
