@@ -3,21 +3,60 @@
 var SYMBOLS = '!"#$%&\'()*+,-./:;<=>?@[]^_`{|}~ \n\\';
 //regex special meanings: \, ^, $, ., |, ?, *, +, (, ), [, {
 var SYMBOLSARR = [" ", "\n", "\\\.", "!", '\\\?', '\\\(', '\\\)', "\\\,", "\\\|"];
+//Emoji mappings
+var emojiMappings;
+var personalEmojiMappings;
+//URL's for emoji mappings
+emojiMappingsURL = "https://erikyangs.github.io/emojipastagenerator/emojiMapping.json";
+personalEmojiMappingsURL = "https://erikyangs.github.io/emojipastagenerator/personalEmojiMapping.json";
+//emoji load flag
+var emojisReady = false;
 
 // Define the app
 var app = angular.module('mainApp', []);
 
-app.controller('mainController', function mainController($scope) {
+app.controller('mainController', function mainController($scope, $http, $q) {
+    //gets data from both json files
+    //http://stackoverflow.com/questions/14545573/angular-accessing-data-of-multiple-http-calls-how-to-resolve-the-promises
+    $q.all([$http.get(emojiMappingsURL), $http.get(personalEmojiMappingsURL)])
+    .then(
+        function(data){
+            //data is returned as a list
+            for(var i in data){
+                mapping = data[i];
+                if(mapping["config"]["url"] == emojiMappingsURL){
+                    emojiMappings = mapping["data"];
+                }
+                else if(mapping["config"]["url"] == personalEmojiMappingsURL){
+                    personalEmojiMappings = wordArrayJSON(lowercaseJSON(mapping["data"]));
+                }
+                else{
+                    console.log("Error when assigning emojiMappings.");
+                    alert("Emojis may not be loading. Sorry about that. Contact me for fixes.");
+                }   
+            }
+            emojisReady = true;
+        }, 
+        function(error){
+            console.log("Error when getting emojiMappings: " + error);
+            alert("Emojis may not be loading. Sorry about that. Contact me for fixes.");
+        }
+    );
+
     //stores data from textarea from ng-model
     $scope.input = "";
 
     $scope.convertToEmojipasta = function(input) {
-        if (emojisReady && personalEmojisReady) {
+        if (emojisReady) {
             //var wordArray = createWordArray(addPersonalEmojis(input));
             var wordArray = createWordArray(input);
             return wordArrayToEmojipasta(wordArray);
-        } else if (pageReady) {
-            alert("Emojis may not be loading. Sorry about that. Contact me for fixes.");
+        }
+        else if (input){
+            return "Loading...";
+        }
+        else{
+            return "";
         }
     }
 });
@@ -25,29 +64,9 @@ app.controller('mainController', function mainController($scope) {
 /*======================================================================*/
 /*JQuery*/
 //emojilib: https://raw.githubusercontent.com/muan/emojilib/master/emojis.json
-var pageReady = false;
-var emojisReady = false;
-var personalEmojisReady = false;
-var emojiMappings;
-var personalEmojiMappings;
+
 var emojiRepeatArray;
 $(document).ready(function() {
-    pageReady = true;
-
-    $.get("https://erikyangs.github.io/emojipastagenerator/emojiMapping.json", function(data, status) {
-        //my json doesn't need parsing, emojilib needs parsing.
-        emojiMappings = data;
-        //parseJSON(data);
-        emojisReady = true;
-        //modifyEmojiLib(emojiMappings);
-    });
-
-    $.get("https://erikyangs.github.io/emojipastagenerator/personalEmojiMapping.json", function(data, status) {
-        personalEmojiMappings = wordArrayJSON(lowercaseJSON(data));
-        personalEmojisReady = true;
-        //alphabetizeJSON(personalEmojiMappings);
-    });
-
     //textarea resizing with content
     $("#textinput").on('input', function(event) {
         $("#textinput").css("height", "1px");
