@@ -45,7 +45,7 @@ omit = ["a", "o", "us", "octocat", "github", "custom_", "sherlock",
 "bloody", "finnadie", "feelsgood", "rage1", "rage2", "rage3", "rage4", "suspect", "hurtrealbad",
 "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "af", "ad", "am", "at", "bs", "bb",
 "by", "be", "bj", "bm", "gg", "is", "in", "it", "iq", "me", "my", "ms", "ma", "nu", "si", "so", 
-"es", "to"]
+"es", "to", "ve", "m"]
 
 result = {}
 for key in emojilib:
