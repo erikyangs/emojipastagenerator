@@ -58,8 +58,8 @@
 	<div ng-app="mainApp" ng-cloak>
 	    <div class="container" ng-controller="mainController">
 	        <div class="row">
-	            <textarea class="col-md-6 col-sm-12" id="textinput" placeholder="Enter Text" ng-model="input" data-ng-trim="false"></textarea>
-	            <div class="col-md-6 col-sm-12" id="output"><span ng-if="!input" id="output-placeholder">Converted Emojipasta</span><img src="copyicon.png" id="copybutton" title="copy emojipasta"></img><span id="emojipasta">{{convertToEmojipasta(input)}}</span></div>
+	            <textarea class="col-md-6 col-sm-12 col-xs-12" id="textinput" placeholder="Enter Text" ng-model="input" data-ng-trim="false"></textarea>
+	            <div class="col-md-6 col-sm-12 col-xs-12" id="output"><span ng-if="!input" id="output-placeholder">Converted Emojipasta</span><img src="copyicon.png" id="copybutton" title="copy emojipasta"></img><span id="emojipasta">{{convertToEmojipasta(input)}}</span></div>
 	        </div>
 	    </div>
 	</div>
