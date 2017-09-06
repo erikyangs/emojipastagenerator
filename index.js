@@ -7,8 +7,8 @@ var SYMBOLSARR = [" ", "\n", "\\\.", "!", '\\\?', '\\\(', '\\\)', "\\\,", "\\\|"
 var emojiMappings;
 var personalEmojiMappings;
 //URL's for emoji mappings
-emojiMappingsURL = "https://erikyangs.github.io/emojipastagenerator/emojiMapping.json";
-personalEmojiMappingsURL = "https://erikyangs.github.io/emojipastagenerator/personalEmojiMapping.json";
+emojiMappingsURL = "http://erikyangs.com/emojipastagenerator/emojiMapping.json";
+personalEmojiMappingsURL = "http://erikyangs.com/emojipastagenerator/personalEmojiMapping.json";
 //emoji load flag
 var emojisReady = false;
 
